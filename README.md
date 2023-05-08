@@ -27,33 +27,33 @@ To install the dependencies, use the follow command:
 pip install -r requirements.txt
 ```
 
->📋  Describe how to set up the environment, e.g. pip/conda/docker commands, download datasets, etc...
-
 ## How to train and test the model
 
 1. Install all the dependencies
 2. Save all the files from this repository under the same folder
 ![alt text](http://url/to/img.png)
-3. Run Main.py
-4. A prompt message will be shown on the terminal asking "Do you want to process the data? Enter Y or N: "
-5. Enter "Y" if the data has never been processed before. The data needs to be processed before the first training
-6. The data will be processed automatically. Then a prompt message will ask you "Please choose a model type:". If you want to train the CONTENT model, enter "CONTENT"; if you want to train the RNN model, enter "RNN"; if you want to train the CONTENT model with LSTM, enter "content_lstm"
+3. Run 'Main.py'
+4. A prompt message will be shown on the terminal asking 'Do you want to process the data? Enter Y or N: '
+5. Enter 'Y' if the data has never been processed before. The data needs to be processed before the first training
+6. The data will be processed automatically. Then a prompt message will ask you 'Please choose a model type: '. If you want to train the CONTENT model, enter 'CONTENT'; if you want to train the RNN model, enter 'RNN'; if you want to train the CONTENT model with LSTM, enter 'content_lstm'
 7. The chosen model will be trained and tested. All the metrics will be printed to the terminal
-
 
 ## Results
 
 Our model achieves the following performance on :
 
-### [Image Classification on ImageNet](https://paperswithcode.com/sota/image-classification-on-imagenet)
+| Model name				  | ROC-AUC	    | PR-AUC	     | ACC	     |
+| --------------------------------------- |---------------- | -------------- | --------------|
+| CONTENT (PyTorch, own implementation)   |0.7998±0.0014    | 0.6501±0.0018  | 0.8352±0.0001 |
+| CONTENT (reported in paper)  		  |0.6886±0.0074    | 0.6011±0.0191  | 0.7170±0.0069 |
+| GRU (reported in paper)   		  |0.6881±0.0048    | 0.5929±0.0100  | 0.7141±0.0040 |
+| GRU (own implementation)  		  |0.7937±0.0003    | 0.6445±0.0012  | 0.8318±0.0017 |
+| CONTENT w/ LSTM (own implementation)    |0.7937±0.0024    | 0.6440±0.0003  | 0.8320±0.0010 |
 
-| Model name				  | Top 1 Accuracy  | Top 5 Accuracy |
-| --------------------------------------- |---------------- | -------------- |
-| CONTENT (PyTorch, own implementation)   |     85%         |      95%       |
-
->📋  Include a table of results from your paper, and link back to the leaderboard for clarity and context. If your main result is a figure, include that figure and link to the command or notebook to reproduce it. 
 
 
-## Contributing
+## References
 
->📋  Pick a licence and describe how to contribute to your code repository. 
+Cao Xiao, Tengfei Ma, Adji B. Dieng, David M. Blei, and Fei Wang. 2018. [Readmission prediction via deep contextual embedding of clinical concepts](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0195024). PLOS ONE, 13:e0195024.
+
+Cao Xiao, Tengfei Ma, Adji B. Dieng, David M. Blei, and Fei Wang. (2018). CONTENT (Version 1.0.0) [Computer software].https://doi.org/10.1371/journal.pone.0195024
