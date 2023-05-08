@@ -33,9 +33,9 @@ pip install -r requirements.txt
 ![alt text](http://url/to/img.png)
 3. Run `Main.py`
 4. A prompt message will be shown on the terminal asking `Do you want to process the data? Enter Y or N:`
-5. Enter "Y" if the data has never been processed before. The data needs to be processed before the first training
-6. The data will be processed automatically. Then a prompt message will ask you `Please choose a model type: `. If you want to train the CONTENT model, enter "CONTENT'"; if you want to train the RNN model, enter "RNN"; if you want to train the CONTENT model with LSTM, enter "content_lstm'"
-7. The chosen model will be trained and tested. All the metrics will be printed to the terminal
+5. Enter "Y" if the data has never been processed before. The data needs to be processed before the first training.
+6. The data will be processed automatically. Then a prompt message will ask you `Please choose a model type: `. If you want to train the CONTENT model, enter "CONTENT'"; if you want to train the RNN model, enter "RNN"; if you want to train the CONTENT model with LSTM, enter "content_lstm".
+7. The chosen model will be trained and tested. All the metrics will be printed to the terminal.
 
 ## Results
 
