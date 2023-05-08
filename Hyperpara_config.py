@@ -12,7 +12,7 @@ class Config:
     lda_vocab_size = vocab_size - n_stops
     n_hidden = 200
     embed_dim = 100
-    total_epoch = 5
+    total_epoch = 6
     batch_size = 1
     threshold = 0.5
     # File Paths

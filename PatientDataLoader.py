@@ -17,7 +17,6 @@ class Data_Loader(object):
 
         self.vocab_path = vocab_path = os.path.join(data_path, "vocab.pkl")
 
-        # use train data to build vocabulary
         if os.path.exists(vocab_path):
             self._load()
         else:

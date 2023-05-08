@@ -38,7 +38,6 @@ def run(data_set, FLAGS, isCONTENT=True, isRNN=False, isLSTM=False):
             l_1 = self.relu(self.l_1(x))
             l_2 = self.relu(self.l_2(l_1))
             mu = self.mu(l_2.view(FLAGS.batch_size, -1))
-    #         log_sigma = self.mu(l_2.view(FLAGS.batch_size, -1)) xx
             log_sigma = self.log_sigma(l_2.view(FLAGS.batch_size, -1))
             sigma = torch.exp(log_sigma)
             klterm = torch.sum(sigma) - torch.sum(log_sigma) + torch.trace(torch.matmul(mu, torch.transpose(mu, 0, 1)))
@@ -285,8 +284,6 @@ def run(data_set, FLAGS, isCONTENT=True, isRNN=False, isLSTM=False):
         X_valid_data, Y_valid_data = data_set.get_data_from_type("valid")
         validAdmiSeqs, validMask, validLabels, validLengths, lval  = dp.prepare_data(X_valid_data, Y_valid_data, vocabsize=FLAGS.vocab_size, maxlen = MAX_LENGTH)
 
-        X_test_data, Y_test_data = data_set.get_data_from_type("test")
-        # test_admiSeqs, test_mask, test_labels, testLengths, ltes = dp.prepare_data(X_test_data, Y_test_data, vocabsize=FLAGS.vocab_size, maxlen = MAX_LENGTH)
 
         print("------CONTENT model------")
         content_model_validation = ContentModel()
@@ -313,9 +310,6 @@ def run(data_set, FLAGS, isCONTENT=True, isRNN=False, isLSTM=False):
         X_valid_data, Y_valid_data = data_set.get_data_from_type("valid")
         validAdmiSeqs, validMask, validLabels, validLengths, lval  = dp.prepare_data(X_valid_data, Y_valid_data, vocabsize=FLAGS.vocab_size, maxlen = MAX_LENGTH)
 
-        X_test_data, Y_test_data = data_set.get_data_from_type("test")
-        # test_admiSeqs, test_mask, test_labels, testLengths, ltes = dp.prepare_data(X_test_data, Y_test_data, vocabsize=FLAGS.vocab_size, maxlen = MAX_LENGTH)
-
         rnn_model = RNN()
         loss_fn = nn.BCELoss(reduction='sum')
         optimizer = torch.optim.SGD(rnn_model.parameters(), lr=LEARNING_RATE)
@@ -340,8 +334,6 @@ def run(data_set, FLAGS, isCONTENT=True, isRNN=False, isLSTM=False):
         X_valid_data, Y_valid_data = data_set.get_data_from_type("valid")
         validAdmiSeqs, validMask, validLabels, validLengths, lval  = dp.prepare_data(X_valid_data, Y_valid_data, vocabsize=FLAGS.vocab_size, maxlen = MAX_LENGTH)
 
-        X_test_data, Y_test_data = data_set.get_data_from_type("test")
-        # test_admiSeqs, test_mask, test_labels, testLengths, ltes = dp.prepare_data(X_test_data, Y_test_data, vocabsize=FLAGS.vocab_size, maxlen = MAX_LENGTH)
 
         content_model_lstm = ContentModel_LSTM()
         loss_fn = nn.BCELoss(reduction='sum')

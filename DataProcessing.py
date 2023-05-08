@@ -24,7 +24,7 @@ VALID_DATA_SIZE = math.floor(RAW_DATA_SIZE*RAW_DATA_SIZE_SCALER/5)
 TEST_DATA_SIZE = int(RAW_DATA_SIZE*RAW_DATA_SIZE_SCALER)-TRAIN_DATA_SIZE-VALID_DATA_SIZE
 
 '''
-Sort Raw data by PID then Day_ID
+Option to sort Raw data by PID then Day_ID
 Use this returned dataframe as the raw data
 return:
   data     Dataframe       data from raw txt file
@@ -41,7 +41,7 @@ def get_data(isSorted = False):
         data = pd.read_csv(Config.RAW_DATA_PATH, sep="\t", header=0)
         data.to_csv(Config.RAW_DATA_SORTED_PATH, sep="\t", index=False)
         return data
-    else:
+    else: # this is for testing
         data = pd.read_csv(Config.RAW_DATA_PATH, sep="\t", header=0)
         # Sort the data by PID and DAY_ID
         sorted_data = data.sort_values(["PID", "DAY_ID"])
@@ -63,7 +63,6 @@ Return:
   None,                   Save data to csv "./data/stop.txt", "./data/vocab.txt"
 '''
 def stop_vocab_generation(data):
-    # Group Our Data By Description
     data_process = data.groupby('DX_GROUP_DESCRIPTION')
     # print("-----------<data_to_csv>----------")
     data_process = data_process.size() # add the frequency (size) of the groupby object
@@ -114,7 +113,6 @@ def load_vocab_index_dict():
         # 4	GENERAL MEDICAL EXAMINATION
         word_to_index = { entry[1]:int(entry[0]) for entry in read_in } 
         
-    # Save Index to Word to Pickled File
     save_pkl(Config.VOCAB_PKL_PATH, {val:key for key, val in word_to_index.items()})
     
     return word_to_index
@@ -247,7 +245,6 @@ def seq_label_gen(word_to_index, events, print_out=False):
             c_day_id = tokens[pos['DAY_ID']]
 
             # when c_pid or c_dayid changed, it runs check_if_admitted_next30days()
-            # closure
             if c_pid != pid:        # pid is the last pid that ran check_if_admitted_next30days(), c_pid is current pid
                 # print(f"<convert_format_test> --------------------in c_pid != pid-------------")
                 # print(f"<convert_format_test> pid: {pid}")
@@ -318,7 +315,6 @@ def seq_label_gen(word_to_index, events, print_out=False):
             # print(f"<convert_format_test> line (updated): {line}")
             # print(f"--------------------------------------------------------------------")
 
-        # closure
         doc.append(sent)
         docs.append(doc)
         labels.append(label)
